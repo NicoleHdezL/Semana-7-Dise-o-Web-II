@@ -3,19 +3,30 @@ import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
 
-let nombre = "Nicole Paola Hernández Loaiza"
-
-function A (props){
-  console.log(props.children)
-  return props.children
-}
-function B (props){
-  return <p>Mi primera experiencia en React {props.nombre}</p>
-}
-
-class MiComponenteClase extends Component{
+class Contador extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      contador:0
+    }
+  }
   render(){
-    return <p>Mi nombre es {nombre}</p>
+    return(
+      <div>
+      <p>Contador : {this.state.contador}</p>
+      <button onClick={()=>{
+        this.setState({
+          contador: this.state.contador+1 
+      })
+        }}> Aumentar </button>
+      <button onClick={()=>{
+  let contador = this.state.contador
+    if(contador>0) {
+      this.setState({contador:contador-1})
+    }
+        }}> Disminuir </button>
+      </div>
+    )
   }
 }
 
@@ -28,15 +39,9 @@ class App extends Component {
   }
 
   render() {
-    let nombre = "Nicole"
     return (
       <div>
-        <A nombre = "Paola">
-        <p>{5+2}</p>
-        <p>Mi primer caso</p>
-        </A>
-        <B nombre = {nombre}/>
-        <MiComponenteClase/>
+        <Contador/>
       </div>
     );
   }
