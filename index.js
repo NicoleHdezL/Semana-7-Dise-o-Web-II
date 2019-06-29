@@ -3,12 +3,19 @@ import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
 
-function MiComponente(){
-  return <p>Mi primera experiencia en React</p>
+let nombre = "Nicole Paola Hernández Loaiza"
+
+function A (props){
+  console.log(props.children)
+  return props.children
 }
+function B (props){
+  return <p>Mi primera experiencia en React {props.nombre}</p>
+}
+
 class MiComponenteClase extends Component{
   render(){
-    return <p>Mi nombre es Nicole</p>
+    return <p>Mi nombre es {nombre}</p>
   }
 }
 
@@ -21,9 +28,14 @@ class App extends Component {
   }
 
   render() {
+    let nombre = "Nicole"
     return (
       <div>
-        <MiComponente/>
+        <A nombre = "Paola">
+        <p>{5+2}</p>
+        <p>Mi primer caso</p>
+        </A>
+        <B nombre = {nombre}/>
         <MiComponenteClase/>
       </div>
     );
