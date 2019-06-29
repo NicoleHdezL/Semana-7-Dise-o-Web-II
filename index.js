@@ -3,29 +3,48 @@ import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
 
-class Contador extends Component{
+
+
+class Formulario extends Component{
   constructor(props){
     super(props);
     this.state={
-      contador:0
+      email:'',
+      password:''
     }
   }
+
+    syncEmailChange(email){
+    console.log(this.state.email)
+    this.setState({
+      email:email
+    })
+  }
+    syncPasswordChange(password){
+    console.log(this.state.password)
+    this.setState({
+      password:password
+    })
+  }
+
   render(){
-    return(
+    return (
+      <form>
+      <input 
+      onChange={(ev)=>{this.syncEmailChange
+      (ev.target.value)}}
+      value={this.state.email}
+      type="email" 
+      placeholder="email"/>
+      <input 
+      value={this.state.password}
+      onChange={(ev)=>{this.syncPasswordChange
+       (ev.target.value)}}
+      type="password" placeholder="********"/>
       <div>
-      <p>Contador : {this.state.contador}</p>
-      <button onClick={()=>{
-        this.setState({
-          contador: this.state.contador+1 
-      })
-        }}> Aumentar </button>
-      <button onClick={()=>{
-  let contador = this.state.contador
-    if(contador>0) {
-      this.setState({contador:contador-1})
-    }
-        }}> Disminuir </button>
+        <input type="submit" placeholder="enviar"/>
       </div>
+      </form>
     )
   }
 }
@@ -38,10 +57,12 @@ class App extends Component {
     };
   }
 
+
+
   render() {
     return (
       <div>
-        <Contador/>
+        <Formulario/>
       </div>
     );
   }
